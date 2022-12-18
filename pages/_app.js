@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function Root({ Component, pageProps, query }) {
+  return <Component {...pageProps} query={query} />;
 }
 
-export default MyApp
+Root.getInitialProps = async ({ router }) => {
+  const { query } = router;
+  return { query };
+};
+
+export default Root;

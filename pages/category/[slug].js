@@ -1,54 +1,98 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../../components/product/index';
 
-export default () => {
-  const router = useRouter();
-  const { slug } = router.query;
-  console.log(slug);
+export default (props) => {
+  const { slug } = props.query;
 
   const API_CATEGORY = '/api/category';
-  const [category, setCategory] = useState({});
-  const API_PRODUCT = '/api/products';
-  const [products, setProducts] = useState([]);
 
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+
+  const previousPageHandler = () => {
+    page == 0 ? setPage(() => page) : setPage(() => page - 1);
+  };
+  const nextPageHandler = () => {
+    page == totalPage - 1 ? setPage(() => 0) : setPage(() => page + 1);
+  };
+
+  // console.log(page);
   useEffect(() => {
     slug &&
-      fetch(API_CATEGORY, { method: "POST", body: JSON.stringify({ slug }) })
+      fetch(API_CATEGORY, {
+        method: 'POST',
+        body: JSON.stringify({ slug, page }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log('1111',data);
-          const resData = data;
-          console.log(typeof resData);
-
-          // console.log(resData);
+          // console.log('11111', data);
+          setProducts(data.displayProducts);
+          setTotalPage(data.totalPage);
         });
-
-    // slug && fetch(API_PRODUCT)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     const arr = data.product;
-    //     console.log('222' + slug);
-    //     let productList = arr.filter((a) => a.cat === slug);
-    //     // console.log(productList);
-    //     setProducts(productList);
-    //     // setProducts(arr);
-    //   });
-  }, [slug]);
+  }, [slug, page]);
 
   return (
-    <>
-      <div className="bg-white">
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 className="sr-only">{slug}</h2>
+        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          {products.map((product, index) => (
+            <ProductCard key={index} data={product} />
+          ))}
+        </div>
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="sr-only">{slug}</h2>
+          <button
+            type="button"
+            onClick={previousPageHandler}
+            className="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800"
+          >
+            <svg
+              aria-hidden="true"
+              className="w-5 h-5"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+                clipRule="evenodd"
+              />
+            </svg>
 
-          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
+            <span className="sr-only">Previous Page</span>
+          </button>
+          <span className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mx-5">
+            {page + 1}/{totalPage}
+          </span>
+          <button
+            type="button"
+            onClick={nextPageHandler}
+            className="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800"
+          >
+            <svg
+              aria-hidden="true"
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+
+            <span className="sr-only">Next Page</span>
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };

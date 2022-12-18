@@ -1,12 +1,18 @@
-const CategoryModel = require('../../model/category');
+const c_model = require('../../model/category');
+const p_model = require('../../model/product');
 
 export default (req, res) => {
-  console.info('22222',CategoryModel);;
-if(req.method === 'POST'){
-  const { slug } = req.body;
-  console.log('1111',slug);
-  // res.status(200).json(CategoryModel[slug] || {});
-}else{
-  res.status(200).json(CategoryModel);
-}
+  const { slug , page} = req.body;
+
+  const eachPageDisplayNum = 2;
+
+  const category = c_model.filter((data) => data.slug === slug)[0];
+
+  const products = p_model.filter((data) => data.category === category.id);
+
+  const totalPage = products.length/eachPageDisplayNum;
+
+  const displayProducts = products.slice(page * 2, (page * 2 + eachPageDisplayNum));
+
+  res.status(200).json({displayProducts,totalPage});
 };
