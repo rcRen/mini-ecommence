@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import ProductCard from '../components/product';
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
@@ -72,27 +72,28 @@ const IndexPage = ({ data }) => {
             <span className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mx-5">
               {page + 1}/{totalPage}
             </span>
-            <button
-              type="button"
-              onClick={nextPageHandler}
-              className="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800"
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
+            <a href="#">
+              <button
+                type="button"
+                onClick={nextPageHandler}
+                className="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-
-              <span className="sr-only">Next Page</span>
-            </button>
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <span className="sr-only">Next Page</span>
+              </button>
+            </a>
           </div>
         </div>
       </>

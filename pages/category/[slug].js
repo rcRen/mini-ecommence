@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import ProductCard from '../../components/product';
 
 export default (props) => {
-  const { slug } = props.query;
+  const { slug } = (useRouter()).query;
 
   const API_CATEGORY = '/api/category';
 

@@ -54,7 +54,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000',
+        return_url: 'http://localhost:3000/checkout/summary',
       },
     });
 
@@ -90,7 +90,7 @@ export default function CheckoutForm() {
               <svg
                 aria-hidden="true"
                 role="status"
-                class="inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600"
+                className="inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

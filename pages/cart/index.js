@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CartItem from '../../components/cartItem';
 import { useCart } from '../../contexts/cart';
 
@@ -17,7 +17,7 @@ export default () => {
         <div className="mx-auto grid max-w-2xl grid-cols-1 items-top gap-y-16 gap-x-32 py-4 px-4 sm:px-6 sm:py-8 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
           <div>
             <ul role="list" className="-my-6 divide-y divide-gray-200">
-              {products.map((product,index) => (
+              {products.map((product, index) => (
                 <CartItem key={index} data={product} />
               ))}
             </ul>
@@ -68,12 +68,14 @@ export default () => {
                 </ul>
               </div>
               <div className="mx-auto text-center mt-6">
-                <button
-                  type="submit"
-                  className="w-full flex justify-center text-white bg-green-700 hover:bg-green-800  font-lg rounded-md text-xl px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700"
-                >
-                  <a href="/cart/checkout">Checkout</a>
-                </button>
+                <a href="/cart/checkout">
+                  <button
+                    type="submit"
+                    className="w-full flex justify-center text-white bg-green-700 hover:bg-green-800  font-lg rounded-md text-xl px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700"
+                  >
+                    Checkout
+                  </button>
+                </a>
               </div>
             </div>
           </div>

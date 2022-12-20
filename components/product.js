@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { addToCart, getQuantityOfProduct, removeFromCart } from '../helper/lib';
 
-export default ({ data }) => {
-  const { image, title, price } = data;
+export default ({ data, __self }) => {
+  const { sequence, image, title, price } = data;
   const [quantity, setQuantity] = useState(getQuantityOfProduct(data)[2]);
 
   const addToCartHandler = () => {
@@ -17,7 +17,7 @@ export default ({ data }) => {
   return (
     <div className="w-full max-w-sm grid grid-rows-1 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <img className="rounded-t-lg" src={image} alt="props image" />
+        <img className="rounded-t-lg" src={image} alt={sequence} />
       </a>
       <div className="px-5 pb-5">
         <a href="#">
@@ -55,26 +55,26 @@ export default ({ data }) => {
                 </span>
               </>
             ) : null}
-            <button
-              type="button"
-              onClick={addToCartHandler}
-              className="text-green-700  hover:bg-green-700 hover:text-white font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white"
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                onClick={addToCartHandler}
+                className="text-green-700  hover:bg-green-700 hover:text-white font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <span className="sr-only">Add to Cart</span>
-            </button>
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <span className="sr-only">Add to Cart</span>
+              </button>
           </div>
         </div>
       </div>

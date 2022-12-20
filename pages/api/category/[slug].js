@@ -6,7 +6,7 @@ export default (req, res) => {
 
   const { page } = req.body;
 
-  const eachPageDisplayNum = 100;
+  const eachPageDisplayNum = 20;
 
   const category = c_model.filter((data) => data.slug === slug)[0];
 

@@ -1,21 +1,24 @@
+import dynamic from 'next/dynamic';
 import '../styles/globals.css';
 
 import Layout from '../components/layout';
-import {CartProvider} from '../contexts/cart'
+import { CartProvider } from '../contexts/cart';
 
 function Root({ Component, pageProps, query }) {
   return (
     <CartProvider>
       <Layout>
-        <Component {...pageProps} query={query} />
+        <Component {...pageProps} />
       </Layout>
     </CartProvider>
   );
 }
 
-Root.getInitialProps = async ({ router }) => {
-  const { query } = router;
-  return { query };
-};
+// Root.getInitialProps = async ({ router }) => {
+//   const { query } = router;
+//   return { query };
+// };
 
-export default Root;
+export default dynamic(() => Promise.resolve(Root), {
+  ssr: false,
+});
