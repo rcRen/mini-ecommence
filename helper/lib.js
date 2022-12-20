@@ -3,15 +3,40 @@ import storage from './storage';
 export const calcSubTotal = (products) => {
   // console.log('prod',products);
   let subtotal = 0;
+
   if (!products) {
-    return null;
+    return subtotal;
   } else {
     for (const product of products) {
       subtotal += product['price'] * product['quantity'];
     }
-    // console.log('sub',subtotal)
-    return subtotal;
+
+    return subtotal.toFixed(2);
   }
+};
+
+export const calcGst = (products) => {
+  const subtotal = parseFloat(calcSubTotal(products));
+  const gstRate = 0.05;
+  return (subtotal * gstRate).toFixed(2);
+};
+
+export const calcQst = (products) => {
+  const subtotal = parseFloat(calcSubTotal(products));
+  const qstRate = 0.09975;
+  return (subtotal * qstRate).toFixed(2);
+};
+
+export const calcTotalTax = (products) => {
+  const gst = parseFloat(calcGst(products));
+  const qst = parseFloat(calcQst(products));
+  return (gst + qst).toFixed(2);
+};
+
+export const calcTotalPrice = (products) => {
+  const subtotal = parseFloat(calcSubTotal(products));
+  const taxes = parseFloat(calcTotalTax(products));
+  return (subtotal + taxes).toFixed(2);
 };
 
 export const getQuantityOfProduct = (item) => {
@@ -35,7 +60,7 @@ export const addToCart = (item) => {
   if (quantity) {
     cart[index]['quantity'] += 1;
   } else {
-    cart.push({ ...item, quantity: 1 });
+    cart.push({ ...item, quantity: quantity + 1 });
   }
   storage.set('cart', cart);
 };

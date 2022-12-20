@@ -1,6 +1,5 @@
 export default {
   get: (key) => {
-    // console.info(global);
     let data = null;
     if (global.window != undefined && window.localStorage != undefined) {
       data = localStorage.getItem(key);
@@ -11,6 +10,8 @@ export default {
   set: (key, value) => {
     const data = typeof value === 'object' ? JSON.stringify(value) : value;
 
-    localStorage.setItem(key, data);
+    if (global.window != undefined && window.localStorage != undefined) {
+      localStorage.setItem(key, data);
+    }
   },
 };

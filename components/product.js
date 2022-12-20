@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
-import { addToCart, getQuantityOfProduct,removeFromCart } from '../../helper/lib';
+import { addToCart, getQuantityOfProduct, removeFromCart } from '../helper/lib';
 
 export default ({ data }) => {
-  const {imageSrc, name, price} = data;
+  const { image, title, price } = data;
   const [quantity, setQuantity] = useState(getQuantityOfProduct(data)[2]);
-  console.log('11',quantity)
+
   const addToCartHandler = () => {
     addToCart(data);
-    setQuantity(quantity+1);
+    setQuantity(quantity + 1);
   };
 
-  const removeFromCartHandler = () => {;
+  const removeFromCartHandler = () => {
     removeFromCart(data);
     setQuantity(quantity - 1);
-  }
+  };
   return (
-    <div className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full max-w-sm grid grid-rows-1 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <img className="p-8 rounded-t-lg" src={imageSrc} alt="props image" />
+        <img className="rounded-t-lg" src={image} alt="props image" />
       </a>
       <div className="px-5 pb-5">
         <a href="#">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {name}
+          <h5 className="text-lg font-semibold tracking-tight text-gray-500 dark:text-white">
+            {title}
           </h5>
         </a>
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
+          <span className="text-xl font-semibold text-gray-900 dark:text-white">${price}</span>
           <div className="flex items-center">
             {quantity !== 0 ? (
               <>
