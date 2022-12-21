@@ -5,7 +5,7 @@ const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  const totalAmt = items.order_price;
+  const totalAmt = items.order_price * 100;
   return totalAmt;
 };
 

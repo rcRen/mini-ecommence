@@ -1,15 +1,11 @@
 import { createContext, useContext, useState } from 'react';
 import currency from 'currency.js';
 import storage from '../helper/storage';
-import {
-  calcSubTotal,
-  calcTotalTax,
-  addToCart,
-  removeFromCart,
-} from '../helper/lib';
+import { calcSubTotal, calcTotalTax, addToCart, removeFromCart, clearCart } from '../helper/lib';
 
 const Props = {
   products: [],
+  productsNumber: 0,
   subTotal: 0,
   tax: 0,
   total: 0,
@@ -20,8 +16,9 @@ const Props = {
 export const CartContext = createContext(Props);
 
 export const CartProvider = (props) => {
-  
   const [products, setProducts] = useState(storage.get('cart'));
+
+  const productsNumber = products.length;
 
   const subTotal = currency(calcSubTotal(products)).value;
 
@@ -41,8 +38,23 @@ export const CartProvider = (props) => {
     setProducts(storage.get('cart'));
   };
 
+  const ClearCart = () => {
+    clearCart();
+  };
+
   return (
-    <CartContext.Provider value={{ products, subTotal, tax, total, AddToCart, RemoveFromCart }}>
+    <CartContext.Provider
+      value={{
+        products,
+        productsNumber,
+        subTotal,
+        tax,
+        total,
+        AddToCart,
+        RemoveFromCart,
+        ClearCart,
+      }}
+    >
       {props.children}
     </CartContext.Provider>
   );

@@ -14,4 +14,8 @@ export default {
       localStorage.setItem(key, data);
     }
   },
+
+  clear: (key) => {
+    localStorage.removeItem(key);
+  },
 };

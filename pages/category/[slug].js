@@ -45,7 +45,7 @@ export default (props) => {
           <ProductCard key={index} data={product} />
         ))}
       </div>
-      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl py-16 px-4 flex justify-center items-center sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <button
           type="button"
           onClick={previousPageHandler}

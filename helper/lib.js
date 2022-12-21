@@ -76,6 +76,10 @@ export const removeFromCart = (item) => {
   storage.set('cart', cart);
 };
 
+export const clearCart = ()=>{
+  storage.clear('cart');
+}
+
 export const getAllItemsInCart = () => {
   const cart = storage.get('cart');
   if (!cart) {
