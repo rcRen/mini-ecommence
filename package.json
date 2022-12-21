@@ -7,6 +7,8 @@
     "format": "prettier \"**/*.{js,md,css,scss,yaml,yml}\""
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
+    "@heroicons/react": "^2.0.13",
     "@stripe/react-stripe-js": "^1.16.1",
     "@stripe/stripe-js": "^1.46.0",
     "currency.js": "^2.0.4",

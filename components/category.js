@@ -18,45 +18,21 @@ export default ({ currentSlug }) => {
   }, []);
 
   return (
-    <nav class="bg-gray-50 dark:bg-gray-700">
-      <div class="max-w-screen-xl px-1 py-3 mx-auto md:px-6">
-        <div class="flex items-center">
-          <ul class="flex flex-wrap flex-row text-base ">
-            {data.length > 0 &&
-              data.map((item, index) => (
-                <li key={index} className=" mt-4 px-4 border-r border-r-gray-500">
-                  <a
-                    href={'/category/' + item.slug}
-                    class="text-gray-900 dark:text-white hover:underline"
-                    aria-current="page"
-                  >
-                    {item.title}
-                  </a>
-                </li>
-              ))}
-          </ul>
+    <div className="relative grid grid-cols-2 gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+    {data.length>0 && data.map((item, index) => (
+      <a
+        key={index}
+        href={'/category/' + item.slug}
+        className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+      >
+        <div className="ml-4">
+          <p className="text-base font-medium text-gray-900">
+            {item.title}
+          </p>
+          {/* <p className="mt-1 text-sm text-gray-500">{item.description}</p> */}
         </div>
-      </div>
-    </nav>
-
-    // <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
-
-    //   <span className=" flex items-center pl-2.5 mb-5 self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-    //     Category
-    //   </span>
-    //   <ul className="space-y-2 divide-y divide-slate-200">
-    //     {data.length > 0 &&
-    //       data.map((item, index) => (
-    //         <li key={index}>
-    //           <a
-    //             href={'/category/' + item.slug}
-    //             className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-    //           >
-    //             <span className="ml-3">{item.title}</span>
-    //           </a>
-    //         </li>
-    //       ))}
-    //   </ul>
-    // </div>
+      </a>
+    ))}
+  </div>
   );
 };
