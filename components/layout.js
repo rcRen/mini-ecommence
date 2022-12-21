@@ -122,7 +122,10 @@ export default (props) => {
           <Category />
         </header>
 
-        <div className="col-start-1 col-end-5  mt-48">{props.children}</div>
+        <div className="col-start-1 col-end-5  mt-48">
+          {props.children}
+          <p className="flex justify-end text-sm text-gray-500">Images provided by  <a href='https://www.iga.net' className='text-blue-800'>&nbsp;IGA</a></p>
+        </div>
 
         <footer className="col-start-1 col-end-5 m-3 p-3 border-slate-300 border-y border-b-0">
           <div className="text-center">Powered by Shop @2022</div>
