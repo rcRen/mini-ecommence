@@ -1,3 +1,5 @@
+import { lastIndexOf } from '../../model/product';
+
 const p_model = require('../../model/product');
 
 export default (req, res) => {
@@ -7,9 +9,10 @@ export default (req, res) => {
 
   const eachPageDisplayNum = 20;
 
-  const totalPage = parseInt(products.length / eachPageDisplayNum);
+  const totalPage = Math.ceil(products.length / eachPageDisplayNum);
 
   const displayProducts = products.slice(page * 2, page * 2 + eachPageDisplayNum);
+  // if (page * 2 + eachPageDisplayNum) > lastIndexOf={()}
 
   res.status(200).json({ displayProducts, totalPage });
 };

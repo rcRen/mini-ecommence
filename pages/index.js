@@ -72,7 +72,6 @@ const IndexPage = () => {
             <span className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mx-5">
               {page + 1}/{totalPage}
             </span>
-            <a href="#">
               <button
                 type="button"
                 onClick={nextPageHandler}
@@ -93,7 +92,6 @@ const IndexPage = () => {
                 </svg>
                 <span className="sr-only">Next Page</span>
               </button>
-            </a>
           </div>
         </div>
       </>

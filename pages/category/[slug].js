@@ -46,7 +46,6 @@ export default (props) => {
         ))}
       </div>
       <div className="mx-auto max-w-2xl py-16 px-4 flex justify-center items-center sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <a href="#">
           <button
             type="button"
             onClick={previousPageHandler}
@@ -68,11 +67,9 @@ export default (props) => {
 
             <span className="sr-only">Previous Page</span>
           </button>
-        </a>
         <span className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mx-5">
           {page + 1}/{totalPage}
         </span>
-        <a href="#">
           <button
             type="button"
             onClick={nextPageHandler}
@@ -94,7 +91,6 @@ export default (props) => {
 
             <span className="sr-only">Next Page</span>
           </button>
-        </a>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const summary = () => {
       <div className="mx-auto grid max-w-2xl grid-cols-1 items-top gap-y-16 gap-x-32 py-4 px-4 sm:px-6 sm:py-8 lg:max-w-7xl lg:grid-cols-1 lg:px-8">
         <div className="mb-8  m-6 -my-6">
           <p className="text-base font-medium tracking-tight text-green-700  sm:text-base">
-            Payment successful
+            Successful
           </p>
           <h1 className="text-4xl font-bold tracking-tight text-gray-700 pb-2 sm:text-4xl">
             Thanks for ordering
@@ -21,7 +21,7 @@ const summary = () => {
           </p>
         </div>
 
-        <ul role="list" className="m-6 -my-6 divide-y divide-gray-200 ">
+        {/* <ul role="list" className="m-6 -my-6 divide-y divide-gray-200 ">
           <li className="flex py-6">
             <div className="ml-4 flex flex-1 flex-col">
               <div className="flex flex-1 items-end justify-between text-sm">
@@ -98,7 +98,7 @@ const summary = () => {
               </div>
             </div>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   );
