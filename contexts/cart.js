@@ -18,7 +18,7 @@ export const CartContext = createContext(Props);
 export const CartProvider = (props) => {
   const [products, setProducts] = useState(storage.get('cart'));
 
-  const productsNumber = products.length;
+  // const productsNumber = products.length;
 
   const subTotal = currency(calcSubTotal(products)).value;
 
@@ -46,7 +46,6 @@ export const CartProvider = (props) => {
     <CartContext.Provider
       value={{
         products,
-        productsNumber,
         subTotal,
         tax,
         total,
